@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SearchBar from "./SearchBar";
 import Youtube from "../api/Youtube";
 import VideoList from "./VideoList";
 import VideoDetail from "./VideoDetail";
-import { useEffect } from "react/cjs/react.development";
 
 const App = () => {
   const [videos, setVideos] = useState([]);
@@ -23,19 +22,23 @@ const App = () => {
   };
   console.log(videos);
 
+  useEffect(() => {
+    onTermSubmit("buildings");
+  }, []);
+
   const onVideoSelect = (video) => {
     // console.log("From the App.js", video);
     setSelectedVideo(video);
     console.log({ selectedVideo });
   };
 
-  const componentDidMount = () => {
-    onTermSubmit("buildings");
-  };
-  useEffect(() => {
-    componentDidMount();
-    console.log("mounted");
-  }, []);
+  // const componentDidMount = () => {
+  //   onTermSubmit("buildings");
+  // };
+  // useEffect(() => {
+  //   componentDidMount();
+  //   // console.log("mounted");
+  // }, []);
 
   return (
     <div className="ui container">
