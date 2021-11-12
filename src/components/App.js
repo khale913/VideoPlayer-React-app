@@ -3,6 +3,7 @@ import SearchBar from "./SearchBar";
 import Youtube from "../api/Youtube";
 import VideoList from "./VideoList";
 import VideoDetail from "./VideoDetail";
+import { useEffect } from "react/cjs/react.development";
 
 const App = () => {
   const [videos, setVideos] = useState([]);
@@ -16,6 +17,9 @@ const App = () => {
     });
 
     setVideos(response.data.items);
+
+    // load first video in list after term submit
+    setSelectedVideo(response.data.items[0]);
   };
   console.log(videos);
 
@@ -24,6 +28,14 @@ const App = () => {
     setSelectedVideo(video);
     console.log({ selectedVideo });
   };
+
+  const componentDidMount = () => {
+    onTermSubmit("buildings");
+  };
+  useEffect(() => {
+    componentDidMount();
+    console.log("mounted");
+  }, []);
 
   return (
     <div className="ui container">
