@@ -11,6 +11,7 @@ const SearchBar = (props) => {
     e.preventDefault();
 
     // TODO: make sure to get full input
+    props.onFormSubmit(term);
 
     setTerm("");
   };
