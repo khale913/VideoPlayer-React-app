@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import SearchBar from "./SearchBar";
 import Youtube from "../api/Youtube";
 import VideoList from "./VideoList";
+import VideoDetail from "./VideoDetail";
 
 const App = () => {
   const [videos, setVideos] = useState([]);
@@ -19,12 +20,15 @@ const App = () => {
   console.log(videos);
 
   const onVideoSelect = (video) => {
-    console.log("from the app", video);
+    console.log("From the App.js", video);
+    setSelectedVideo(video);
+    console.log({ selectedVideo });
   };
 
   return (
     <div className="ui container">
       <SearchBar onFormSubmit={onTermSubmit} />
+      <VideoDetail video={selectedVideo} />
       <VideoList videos={videos} onVideoSelect={onVideoSelect} />
     </div>
   );
