@@ -20,7 +20,7 @@ const App = () => {
   console.log(videos);
 
   const onVideoSelect = (video) => {
-    console.log("From the App.js", video);
+    // console.log("From the App.js", video);
     setSelectedVideo(video);
     console.log({ selectedVideo });
   };
@@ -28,8 +28,16 @@ const App = () => {
   return (
     <div className="ui container">
       <SearchBar onFormSubmit={onTermSubmit} />
-      <VideoDetail video={selectedVideo} />
-      <VideoList videos={videos} onVideoSelect={onVideoSelect} />
+      <div className="ui grid">
+        <div className="ui row">
+          <div className="eleven wide column">
+            <VideoDetail video={selectedVideo} />
+          </div>
+          <div className="five wide column">
+            <VideoList videos={videos} onVideoSelect={onVideoSelect} />
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
